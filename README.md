@@ -6,7 +6,7 @@ A Binder-compatible repo with an `environment.yml` file.
 
 Access this Binder by clicking the blue badge above or at the following URL:
 
-https://mybinder.org/v2/gh/MakGord/Project_Stock_Price_Movement/master
+https://mybinder.org/v2/gh/MakGord/Project_Stock_Price_Movement/main
 
 ## Notes
 The `environment.yml` file should list all Python libraries on which your notebooks
