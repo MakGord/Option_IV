@@ -1,12 +1,32 @@
+# Stock Price Probabilty Plot
+
+Project Goal: 
+The goal of this project is to create a model that estimates a potential direction and magnitutde of the price movement for a given stock for a given time interval based on the historical data for the given periods. 
+
+Model Inputs: 
+- Stock Ticker
+- Start Date of the historical interval
+- End Date of the histroical interval (Today's Date by default)
+- Desired Time Frame (1 day, 1 week, 1 month)
+- Price Resolution (Rounding factor)
+
+Model Outputs: 
+- A chart that displays historical "significance" of each price level and plots a normal distribution model based on the latest available price and historical standard deviation over it. 
+
 # Conda environment with environment.yml
 
 [![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MakGord/Stock_Price_Probability_Plot/main?filepath=index.ipynb)
+
+
 
 A Binder-compatible repo with an `environment.yml` file.
 
 Access this Binder by clicking the blue badge above or at the following URL:
 
 https://mybinder.org/v2/gh/MakGord/Stock_Price_Probability_Plot/main
+
+
+
 
 ## Notes
 The `environment.yml` file should list all Python libraries on which your notebooks
@@ -16,6 +36,8 @@ depend, specified as though they were created using the following `conda` comman
 conda activate example-environment
 conda env export --from-history -f environment.yml
 ```
+
+
 
 Note that the only libraries available to you will be the ones specified in
 the `environment.yml`, so be sure to include everything that you need! 
