@@ -10,14 +10,48 @@ Model Inputs:
 - Desired Time Frame (1 day, 1 week, 1 month)
 - Price Resolution (Rounding factor)
 
-Model Outputs: 
-- A chart that displays historical "significance" of each price level and plots a normal distribution model based on the latest available price and historical standard deviation over it. 
+**Model Outputs:** 
+- A csv format table representing a count of Open-High-Low-Close (OHLC) occurances and their total sum for each historical price point. 
+- A chart that combines a bar plot of sum of OHLC occurances at each price point (as per table above) and a normal distribution plot calculated with the latest available historical price (as mu) and historical standard deviation (as sigma). 
+
+**Code:** 
+1. Getting Historical Data and Extracting Variables
+  * Import the historical data as a Pandas DataFrame using YFinance extension.
+  ```
+  def GetStockData(ticker,start_date,end_date,interval):
+    df = yf.download(ticker, start_date, end_date,interval=interval).dropna()
+    return(df)
+  ```
+  * Extract the last available closing stock price from the DataFrame.
+  
+   ```
+  def Last_Price(df):
+    Last_Price=df.Close[len(df.Close)-1]
+    return(Last_Price) 
+   ```
+  * Calculate Log Return for each closing period using Numpy extension.
+  * Calculate Standard Deviation for the Log Return using Numpy extension. 
+  
+   ```
+  def Get_STD(df):
+    df['log_R'] = np.log(df.Close) - np.log(df.Close.shift(1))
+    STD=np.std(df.log_R)
+    return(STD)
+  ```
+  
+  * Round the DataFrame to the base.
+  ```
+  def Round(df,base):
+      df = base*round(df/base)
+      return(df)
+  ```
 
 # Conda environment with environment.yml
 
 [![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MakGord/Stock_Price_Probability_Plot/main?filepath=index.ipynb)
 
-
+ ```
+ ```
 
 A Binder-compatible repo with an `environment.yml` file.
 
