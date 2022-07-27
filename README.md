@@ -17,7 +17,7 @@ Model Inputs:
 **Code:** 
 1. Getting Historical Data and Extracting Variables
 
-  * Import the historical data as a Pandas DataFrame using YFinance extension.
+  1. Import the historical data as a Pandas DataFrame using YFinance extension.
   
   ```
   def GetStockData(ticker,start_date,end_date,interval):
@@ -48,7 +48,6 @@ Model Inputs:
       return(df)
   ```
 2. Grouping the DataFrame by count of O-H-L-C and finding their sum. 
-
   ```
   def GroupOHLC(df):
       df['Date']=df.index
