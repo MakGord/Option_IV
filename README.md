@@ -47,37 +47,36 @@ Model Inputs:
       df = base*round(df/base)
       return(df)
   ```
-2. Grouping the DataFrame by count of O-H-L-C and finding their sum. 
+1. Grouping the DataFrame by count of O-H-L-C and finding their sum. 
   
-```
-  def GroupOHLC(df):
-      df['Date']=df.index
+ ```
+ def GroupOHLC(df):
+     df['Date']=df.index
 
-      #Group by individual OHLC columns
-      dfo=pd.DataFrame(df.groupby('Open').count().sort_values(by='Date',ascending=False).Date)
-      dfh=pd.DataFrame(df.groupby('High').count().sort_values(by='Date',ascending=False).Date)
-      dfl=pd.DataFrame(df.groupby('Low').count().sort_values(by='Date',ascending=False).Date)
-      dfc=pd.DataFrame(df.groupby('Close').count().sort_values(by='Date',ascending=False).Date)
+     #Group by individual OHLC columns
+     dfo=pd.DataFrame(df.groupby('Open').count().sort_values(by='Date',ascending=False).Date)
+     dfh=pd.DataFrame(df.groupby('High').count().sort_values(by='Date',ascending=False).Date)
+     dfl=pd.DataFrame(df.groupby('Low').count().sort_values(by='Date',ascending=False).Date)
+     dfc=pd.DataFrame(df.groupby('Close').count().sort_values(by='Date',ascending=False).Date)
 
-      #Join OHLC columns
-      df=dfo.join(dfh,how='outer',rsuffix='o',sort=True)
-      df=df.join(dfl,how='outer',rsuffix='h',sort=True)
-      df=df.join(dfc,how='outer',rsuffix='l',sort=True).fillna(0)
+     #Join OHLC columns
+     df=dfo.join(dfh,how='outer',rsuffix='o',sort=True)
+     df=df.join(dfl,how='outer',rsuffix='h',sort=True)
+     df=df.join(dfc,how='outer',rsuffix='l',sort=True).fillna(0)
 
-      #Sum and name OHLC columns
-      df['total']=df.sum(axis=1)
-      df.columns=['Count_Open','Count_High','Count_Low','Count_Close','Count_Sum']
-      df=df.sort_values(by='Count_Sum',ascending=False)
-      df.index.name='Price_Level($)'
-      return(df)
-```
+     #Sum and name OHLC columns
+     df['total']=df.sum(axis=1)
+     df.columns=['Count_Open','Count_High','Count_Low','Count_Close','Count_Sum']
+     df=df.sort_values(by='Count_Sum',ascending=False)
+     df.index.name='Price_Level($)'
+     return(df)
+ ```
 
-3. Creating a box-plot of the O-H-L-C sum
+1. Creating a box-plot of the O-H-L-C sum
 
  ```
  def PlotData(df,ticker,start_date,end_date):
-    
-    
+
     fig, ax = plt.subplots()
     #Set X and Y
     X=df.index
