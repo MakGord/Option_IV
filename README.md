@@ -47,7 +47,7 @@ Model Inputs:
       df = base*round(df/base)
       return(df)
   ```
-1. Grouping the DataFrame by count of O-H-L-C and finding their sum. 
+2. Grouping the DataFrame by count of O-H-L-C and finding their sum. 
   
  ```
  def GroupOHLC(df):
@@ -72,7 +72,7 @@ Model Inputs:
      return(df)
  ```
 
-1. Creating a box-plot of the O-H-L-C sum
+3. Creating a box-plot of the O-H-L-C sum
 
  ```
  def PlotData(df,ticker,start_date,end_date):
