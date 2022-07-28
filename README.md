@@ -1,6 +1,7 @@
 # Price Probabilty Plot
 
-**Project Goal:**
+**Project Goal:** 
+
 This project aims to create a statistical model that allows to visually estimate a potential level of magnitutde and direction of the price movement for a given security over a specified interval of time based on the historical data. 
 
 **Model Inputs:** 
@@ -13,14 +14,18 @@ This project aims to create a statistical model that allows to visually estimate
 **Model Outputs:** 
 - A Price Frequency table that counts the amount of time a stock has spent at each price point based on historical Open-High-Low-Close (OHLC) data. 
 
-<src="price_frequency_XBI_2010-01-01_2022-07-28.csv?raw=true"/>
+    [price_frequency_XBI_2010-01-01_2022-07-28.csv](https://github.com/MakGord/Stock_Price_Probability_Plot/blob/main/price_frequency_XBI_2010-01-01_2022-07-28.csv)
 
 - A Price Probability Plot that overlays the Price Frequency data with a normal distribution plot calculated at the last available price (as mu) and historical standard deviation (as sigma). 
 
 <img src="price_probability_plot_XBI_2010-01-01_2022-07-28.png?raw=true"/>
+
 **Code:** 
 
-Mybinder Environment: [![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MakGord/Stock_Price_Probability_Plot/main?filepath=index.ipynb)
+
+[price_probability_plot.ipynb](https://github.com/MakGord/Stock_Price_Probability_Plot/blob/main/price_probability_plot.ipynb)
+
+[![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MakGord/Stock_Price_Probability_Plot/main?filepath=index.ipynb)
 
 1. Import Modules.
 ```
@@ -204,8 +209,5 @@ def plot_normal(fig, ax, last_price, st_dev_pct):
 
     return ax.plot
  ```
-
-
-https://mybinder.org/v2/gh/MakGord/Stock_Price_Probability_Plot/main
 
 
