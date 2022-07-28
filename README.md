@@ -3,6 +3,8 @@
 Project Goal: 
 The goal of this project is to create a model that estimates a potential direction and magnitutde of the price movement for a given stock for a given time interval based on the historical data for the given periods. 
 
+
+
 Model Inputs: 
 - Stock Ticker
 - Start Date of the historical interval
@@ -15,7 +17,28 @@ Model Inputs:
 - A chart that combines a bar plot of sum of OHLC occurances at each price point (as per table above) and a normal distribution plot calculated with the latest available historical price (as mu) and historical standard deviation (as sigma). 
 
 **Code:** 
-1. Getting Historical Data and Extracting Variables
+
+1. Import the modules.
+```
+import yfinance as yf
+import pandas as pd
+import numpy as np
+import plotly.graph_objects as go
+import matplotlib.pyplot as plt
+from scipy import stats
+from datetime import date
+import math
+```
+2. Initialize the variables. 
+```
+ticker="XBI"
+start_date="2010-01-01"
+end_date=date.today()
+time_interval="1wk"
+rounding_base=1
+```
+
+3. Getting Historical Data and Extracting Variables
 
   * Import the historical data as a Pandas DataFrame using YFinance extension.
   
