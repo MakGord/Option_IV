@@ -1,21 +1,23 @@
-# Stock Price Probabilty Plot
+# Price Probabilty Plot
 
 **Project Goal:**
-The goal of this project is to create a model that estimates a potential direction and magnitutde of the price movement for a given stock for a given time interval based on the historical data for the given periods. 
-
-
+This project aims to create a statistical model that allows to visually estimate a potential level of magnitutde and direction of the price movement for a given security over a specified interval of time based on the historical data. 
 
 **Model Inputs:** 
-- Stock Ticker
-- Start Date of the historical interval
-- End Date of the histroical interval (Today's Date by default)
+- Ticker Symbol
+- Start Date for a Historical Interval
+- End Date for a Historical Interval (Today's Date by default)
 - Desired Time Frame (1 day, 1 week, 1 month)
-- Price Resolution (Rounding factor)
+- Price Resolution (Rounding base)
 
 **Model Outputs:** 
-- A csv format table representing a count of Open-High-Low-Close (OHLC) occurances and their total sum for each historical price point. 
-- A chart that combines a bar plot of sum of OHLC occurances at each price point (as per table above) and a normal distribution plot calculated with the latest available historical price (as mu) and historical standard deviation (as sigma). 
+- A Price Frequency table that counts the amount of time a stock has spent at each price point based on historical Open-High-Low-Close (OHLC) data. 
 
+<src="price_frequency_XBI_2010-01-01_2022-07-28.csv?raw=true"/>
+
+- A Price Probability Plot that overlays the Price Frequency data with a normal distribution plot calculated at the last available price (as mu) and historical standard deviation (as sigma). 
+
+<img src="price_probability_plot_XBI_2010-01-01_2022-07-28.png?raw=true"/>
 **Code:** 
 
 Mybinder Environment: [![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MakGord/Stock_Price_Probability_Plot/main?filepath=index.ipynb)
