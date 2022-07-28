@@ -25,7 +25,7 @@ This project aims to create a statistical model that allows to visually estimate
 
 [price_probability_plot.ipynb](https://github.com/MakGord/Price_Probability_Plot/blob/main/price_probability_plot.ipynb)
 
-[![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MakGord/Price_Probability_Plot/main?filepath=index.ipynb)
+[![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MakGord/Price_Probability_Plot/main)
 
 1. Import Modules.
 ```
