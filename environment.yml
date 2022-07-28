@@ -16,3 +16,4 @@ dependencies:
   - scipy
   - plotly
   - mplfinance
+  - black
