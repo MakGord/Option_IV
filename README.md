@@ -1,11 +1,11 @@
 # Stock Price Probabilty Plot
 
-Project Goal: 
+**Project Goal:**
 The goal of this project is to create a model that estimates a potential direction and magnitutde of the price movement for a given stock for a given time interval based on the historical data for the given periods. 
 
 
 
-Model Inputs: 
+**Model Inputs:** 
 - Stock Ticker
 - Start Date of the historical interval
 - End Date of the histroical interval (Today's Date by default)
@@ -18,18 +18,19 @@ Model Inputs:
 
 **Code:** 
 
-1. Import the modules.
+1. Import Modules.
 ```
-import yfinance as yf
-import pandas as pd
+import math
 import numpy as np
-import plotly.graph_objects as go
-import matplotlib.pyplot as plt
+import pandas as pd
+import yfinance as yf
 from scipy import stats
 from datetime import date
-import math
+import plotly.graph_objects as go
+import matplotlib.pyplot as plt
+import matplotlib.ticker as mtick
 ```
-2. Initialize the variables. 
+2. Initialize Variables. 
 ```
 ticker="XBI"
 start_date="2010-01-01"
@@ -38,8 +39,69 @@ time_interval="1wk"
 rounding_base=1
 ```
 
-3. Getting Historical Data and Extracting Variables
+3. Download Historical Data from Yahoo Finance
+```
+def get_stock_data(ticker, start_date, end_date, time_interval):
+    df = yf.download(ticker, start_date, end_date, interval = time_interval).dropna()
+    return df
+```
 
+
+4. Extract the Last Closing Price
+```
+def get_last_price(df):
+    last_price = df.Close[len(df.Close) - 1]
+    return last_price
+```
+
+5. Calcualate Standard Deviation of the Log Return.
+```
+def get_st_dev(df):
+    df["log_r"] = np.log(df.Close) - np.log(df.Close.shift(1))
+    st_dev_pct = np.std(df.log_r)
+    return st_dev_pct
+```
+6. Round Historical Data.
+```
+def round_data(df, rounding_base):
+    df = roinding_base * round(df / rounding_base)
+    return df
+```
+
+7. Group Historical Data by counting the sum of Opens, High, Lows and Closes (OHLC) for each Price Point
+```
+def group_data(df):
+    df["Date"] = df.index
+
+    # Individually group OHLC columns
+    df_group_open = pd.DataFrame(
+        df.groupby("Open").count().sort_values(by="Date", ascending=False).Date
+    )
+    df_group_high = pd.DataFrame(
+        df.groupby("High").count().sort_values(by="Date", ascending=False).Date
+    )
+    df_group_low = pd.DataFrame(
+        df.groupby("Low").count().sort_values(by="Date", ascending=False).Date
+    )
+    df_group_close = pd.DataFrame(
+        df.groupby("Close").count().sort_values(by="Date", ascending=False).Date
+    )
+
+    # Join OHLC columns
+    df_joined = df_group_open.join(df_group_high, how="outer", rsuffix="o", sort=True)
+    df_joined = df_joined.join(df_group_low, how="outer", rsuffix="h", sort=True)
+    df_joined = df_joined.join(df_group_close, how="outer", rsuffix="l", sort=True).fillna(0)
+    # Rename columns and index
+    df_joined.columns = ["count_open", "count_high", "count_low", "count_close"]
+    df_joined.index.name = "dollar_price_point"
+    # Add sum column
+    df_joined["count_sum"] = df_joined.sum(axis=1)
+    # Add percentage sum column
+    df_joined["count_sum_pct"] = df_joined.count_sum / np.sum(df_joined.count_sum)
+    # Sort by percentage sum
+    df_joined = df_joined.sort_values(by="count_sum_pct", ascending=False)
+    return df_joined
+```
   * Import the historical data as a Pandas DataFrame using YFinance extension.
   
   ```
