@@ -14,7 +14,7 @@ This project aims to create a statistical model that allows to visually estimate
 **Model Outputs:** 
 - A Price Frequency table that counts the amount of time a stock has spent at each price point based on historical Open-High-Low-Close (OHLC) data. 
 
-    [price_frequency_XBI_2010-01-01_2022-07-28.csv](https://github.com/MakGord/Stock_Price_Probability_Plot/blob/main/price_frequency_XBI_2010-01-01_2022-07-28.csv)
+    [price_frequency_XBI_2010-01-01_2022-07-28.csv](https://github.com/MakGord/Price_Probability_Plot/blob/main/price_frequency_XBI_2010-01-01_2022-07-28.csv)
 
 - A Price Probability Plot that overlays the Price Frequency data with a normal distribution plot calculated at the last available price (as mu) and historical standard deviation (as sigma). 
 
@@ -23,9 +23,9 @@ This project aims to create a statistical model that allows to visually estimate
 **Code:** 
 
 
-[price_probability_plot.ipynb](https://github.com/MakGord/Stock_Price_Probability_Plot/blob/main/price_probability_plot.ipynb)
+[price_probability_plot.ipynb](https://github.com/MakGord/Price_Probability_Plot/blob/main/price_probability_plot.ipynb)
 
-[![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MakGord/Stock_Price_Probability_Plot/main?filepath=index.ipynb)
+[![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MakGord/Price_Probability_Plot/main?filepath=index.ipynb)
 
 1. Import Modules.
 ```
