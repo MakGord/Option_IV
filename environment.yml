@@ -17,3 +17,4 @@ dependencies:
   - plotly
   - mplfinance
   - black
+  - jupyter-contrib-nbextensions
